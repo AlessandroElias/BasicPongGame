@@ -70,7 +70,7 @@ public class GamePanel extends JPanel implements Runnable {
         if(ball.y >= GAME_HEIGHT-BALL_DIAMETER){
             ball.setYDirection(-ball.yVelocity);
         }
-        //bounce bacll off paddles
+        //bounce ball off paddles
         if(ball.intersects(paddle1) || ball.intersects((paddle2))){
             ball.xVelocity = ball.xVelocity * -1;
             ball.yVelocity = ball.yVelocity * -1;
@@ -100,6 +100,19 @@ public class GamePanel extends JPanel implements Runnable {
         if(paddle2.y >= (GAME_HEIGHT-PADDLE_HEIGHT)){
             paddle2.y = GAME_HEIGHT-PADDLE_HEIGHT;
         }
+        if(ball.x <= 0){
+            score.player2++;
+            newPaddles();
+            newBall();
+            System.out.println("Player 2 "+score.player2);
+        }
+        if(ball.x >= GAME_WIDTH-BALL_DIAMETER){
+            score.player1++;
+            newPaddles();
+            newBall();
+            System.out.println("Player 1 "+ score.player1);
+        }
+
     }
 
     public void run() {
